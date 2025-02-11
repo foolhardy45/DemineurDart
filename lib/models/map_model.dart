@@ -76,13 +76,21 @@ class MapModel{
 
   void toggleFlag(int i , int j){
     _cases[i][j].hasFlag = !_cases[i][j].hasFlag;
-  }
 
+  }
+/*
   List<List<CaseModel>> get cases => _cases;
 
-  int get nbBomb => _nbBomb;
+  int get nbBom => _nbBomb;
 
   int get nbColumn => _nbColumn;
 
   int get nbLine => _nbLine;
+  */
+  bool hasBomb(int i, int j) => _cases[i][j].hasBomb;
+  bool hasFlag(int i, int j) => _cases[i][j].hasFlag;
+  bool hasExploded(int i, int j) => _cases[i][j].hasExploded ?? false;
+  bool isHidden(int i, int j) => _cases[i][j].hidden;
+  bool isNumber(int i, int j) => _cases[i][j].number != null;
+  int? getNumber(int i, int j) => _cases[i][j].number;
 }
