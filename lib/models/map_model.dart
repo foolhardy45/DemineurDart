@@ -91,6 +91,5 @@ class MapModel{
   bool hasFlag(int i, int j) => _cases[i][j].hasFlag;
   bool hasExploded(int i, int j) => _cases[i][j].hasExploded ?? false;
   bool isHidden(int i, int j) => _cases[i][j].hidden;
-  bool isNumber(int i, int j) => _cases[i][j].number != null;
   int? getNumber(int i, int j) => _cases[i][j].number;
 }
