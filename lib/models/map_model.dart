@@ -104,6 +104,7 @@ class MapModel{
     initBomb();
     initNumber();
   }
+
   void reveal(int i, int j){
     if(_cases[i][j].hasFlag) return;
 

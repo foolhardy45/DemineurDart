@@ -42,15 +42,17 @@ class GameViewModel{
     CaseModel caseModel = mapModel.cases[i][j];
 
     if(caseModel.hasFlag){
-      return Image.asset('assets/flag.png', height: 40,);
+      return Image.asset('assets/images/flag.png', height: 40,);
     }else if(caseModel.hidden){
       return Container();
     }else if(caseModel.hasExploded){
-      return Image.asset('assets/exploded.png', height: 40,);
+      return Image.asset('assets/images/exploded.png', height: 40,);
     }else if(caseModel.hasBomb) {
-      return Image.asset('assets/bomb.png', height: 40,);
+      return Image.asset('assets/images/bomb.png', height: 40,);
+    }else if (caseModel.number != null){
+      return Image.asset('assets/images/${caseModel.number}.png', height: 40,);
     }else{
-      return Image.asset('assets/${caseModel.number}.png', height: 40,);
+      return Container();
     }
 
     /*if(mapModel.isHidden(i, j)){

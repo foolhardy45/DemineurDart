@@ -11,6 +11,7 @@ class GameView extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    print("affichage de la vue");
     return Scaffold(
       appBar: AppBar(title: Text('Demineur')),
       body: Table(
