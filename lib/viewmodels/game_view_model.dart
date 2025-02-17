@@ -2,26 +2,36 @@ import 'package:demineur/models/map_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../models/case_model.dart';
+
 
 
 
 class GameViewModel{
-  MapModel mapModel = MapModel();
+  final MapModel mapModel;
 
+  GameViewModel({required this.mapModel});
 
+  int get nbLine => mapModel.nbLine;
+  int get nbColumn => mapModel.nbColumn;
 
   void generateMap(){
     mapModel.generateMap();
   }
 
   void click(int i, int j){
-    if(mapModel.isHidden(i, j) && !mapModel.hasFlag(i, j)){
+    if(mapModel.cases[i][j].hasFlag) return;
+
+    mapModel.reveal(i, j);
+    /*if(mapModel.isHidden(i, j) && !mapModel.hasFlag(i, j)){
       mapModel.reveal(i, j);
     }
     if(mapModel.hasBomb(i, j)){
       mapModel.explode(i, j);
       mapModel.revealAll();
     }
+
+     */
   }
 
   void onLongPress(int i, int j){
@@ -29,7 +39,21 @@ class GameViewModel{
   }
 
   Widget getIcon(int i, int j){
-    if(mapModel.isHidden(i, j)){
+    CaseModel caseModel = mapModel.cases[i][j];
+
+    if(caseModel.hasFlag){
+      return Image.asset('assets/flag.png', height: 40,);
+    }else if(caseModel.hidden){
+      return Container();
+    }else if(caseModel.hasExploded){
+      return Image.asset('assets/exploded.png', height: 40,);
+    }else if(caseModel.hasBomb) {
+      return Image.asset('assets/bomb.png', height: 40,);
+    }else{
+      return Image.asset('assets/${caseModel.number}.png', height: 40,);
+    }
+
+    /*if(mapModel.isHidden(i, j)){
       if(mapModel.hasFlag(i, j)){
         return Image.asset('assets/flag.png');
       }
@@ -65,6 +89,8 @@ class GameViewModel{
         return Image.asset('assets/8.png');
     }
     return Image.asset('assets/hidden.png');
+
+     */
   }
   
 

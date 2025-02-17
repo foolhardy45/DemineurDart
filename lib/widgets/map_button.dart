@@ -1,31 +1,28 @@
 import 'package:demineur/viewmodels/game_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class MapButton extends StatelessWidget{
-  const MapButton({Key? key}) : super(key: key);
+  final int i;
+  final int j;
+  final GameViewModel viewModel;
+
+  const MapButton({super.key, required this.i, required this.j, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
-    final GameViewModel mapButton = context.watch<GameViewModel>();
-
     return InkWell(
-      onTap: (){
-        mapButton.click(0, 0);
-      },
-      onLongPress: (){
-        mapButton.onLongPress(0, 0);
-      },
+      onTap: () => viewModel.click(i, j),
+      onLongPress: () => viewModel.onLongPress(i, j),
       child: Container(
-        width: 50,
-        height: 50,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black),
+            border: Border.all(color: Colors.grey),
         ),
-        child: mapButton.getIcon(0, 0),
-      ),
-    );
+          child: Center(
+            child: viewModel.getIcon(i, j),
+          ),
+        ),
+      );
   }
 
 
